@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Maker | Text & Image to PDF Converter</title>
+    <meta name="description" content="Free online tool to create PDFs from text or convert images to PDF documents.">
+    <link rel="stylesheet" href="pdf.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="app-title">PDF Maker</h1>
+            <p class="app-subtitle">Convert Text or Images to PDF</p>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="text-tab">Text to PDF</button>
+                <button class="tab-btn" data-tab="image-tab">Image to PDF</button>
+            </div>
+            
+            <!-- Text to PDF Section -->
+            <section id="text-tab" class="tab-content active">
+                <div class="app-grid">
+                    <!-- Input Form Section -->
+                    <div class="input-section card">
+                        <h2>Text to PDF</h2>
+                        
+                        <form id="text-pdf-form" class="pdf-form">
+                            <div class="form-group">
+                                <label for="title">Document Title</label>
+                                <input type="text" id="title" placeholder="Enter document title">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="content">Document Content</label>
+                                <textarea id="content" placeholder="Enter your content here..." rows="10"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-page-size">Page Size</label>
+                                <select id="text-page-size">
+                                    <option value="a4">A4</option>
+                                    <option value="letter">Letter</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-orientation">Orientation</label>
+                                <select id="text-orientation">
+                                    <option value="portrait">Portrait</option>
+                                    <option value="landscape">Landscape</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="text-watermark">Watermark Text (Optional)</label>
+                                <input type="text" id="text-watermark" placeholder="e.g., Draft, Confidential">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" id="text-reset-btn" class="btn btn-secondary">Reset</button>
+                                <button type="button" id="generate-text-pdf" class="btn btn-primary">Generate PDF</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Preview Section -->
+                    <div class="preview-section card">
+                        <h2>Text PDF Preview</h2>
+                        <div id="text-preview" class="preview-container">
+                            <div id="text-preview-content" class="preview-content">
+                                <p class="preview-placeholder">Your text PDF preview will appear here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Image to PDF Section -->
+            <section id="image-tab" class="tab-content">
+                <div class="app-grid">
+                    <!-- Image Upload Section -->
+                    <div class="input-section card">
+                        <h2>Image to PDF</h2>
+                        
+                        <form id="image-pdf-form" class="pdf-form">
+                            <div class="form-group">
+                                <label for="image-title">PDF Title (Optional)</label>
+                                <input type="text" id="image-title" placeholder="Enter PDF title">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-upload">Upload Images</label>
+                                <div class="file-upload">
+                                    <input type="file" id="image-upload" accept="image/*" multiple>
+                                    <label for="image-upload" class="file-upload-label">
+                                        <span class="file-icon">📷</span>
+                                        <span class="file-text">Select one or multiple images</span>
+                                    </label>
+                                </div>
+                                <p class="file-hint">You can select multiple images (max 10, 5MB each)</p>
+                            </div>
+                            
+                            <div id="image-preview-container" class="image-preview-container">
+                                <!-- Uploaded images will appear here -->
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-page-size">Page Size</label>
+                                <select id="image-page-size">
+                                    <option value="a4">A4</option>
+                                    <option value="letter">Letter</option>
+                                    <option value="auto">Auto (Fit to Image)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-orientation">Orientation</label>
+                                <select id="image-orientation">
+                                    <option value="auto">Auto (Based on Image)</option>
+                                    <option value="portrait">Portrait</option>
+                                    <option value="landscape">Landscape</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-layout">Image Layout</label>
+                                <select id="image-layout">
+                                    <option value="fit">Fit to Page</option>
+                                    <option value="stretch">Stretch to Fill Page</option>
+                                    <option value="actual">Actual Size</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" id="image-reset-btn" class="btn btn-secondary">Clear Images</button>
+                                <button type="button" id="generate-image-pdf" class="btn btn-primary">Generate PDF</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Image Preview Section -->
+                    <div class="preview-section card">
+                        <h2>Image PDF Preview</h2>
+                        <div id="image-preview" class="preview-container">
+                            <div id="image-preview-content" class="preview-content">
+                                <p class="preview-placeholder">Your image PDF preview will appear here...</p>
+                                <div id="image-thumbnails" class="image-thumbnails">
+                                    <!-- Image thumbnails will appear here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Progress Bar -->
+        <div id="progress-bar" class="progress-bar hidden">
+            <div class="progress-fill"></div>
+            <span class="progress-text">Generating PDF...</span>
+        </div>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message">PDF downloaded successfully!</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="pdf.js"></script>
+</body>
+</html>
